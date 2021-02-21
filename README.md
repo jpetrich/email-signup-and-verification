@@ -22,3 +22,24 @@ The environment variables required to make these functions work are:
 
 You can set the environment variables either through the Cloud Console UI or using `gcloud`. Documentation for
 both options is found [here](https://cloud.google.com/functions/docs/env-var#gcloud).
+
+## Quick Start
+
+1. Download or clone this repository.
+2. [Install and set up Google Cloud SDK](https://cloud.google.com/sdk/docs/install#linux).
+3. Enable Cloud Functions and Cloud Firestore on a Google Cloud project.
+4. Set the active Google Cloud project using `gcloud config set project [MY_PROJECT_ID]`
+5. `cd` into either `emailSignup` or `emailVerification`.
+
+Now, to run locally:
+
+6. Run `npm install` to install the dependencies.
+7. Run `npm start`
+
+To deploy to Google Cloud
+
+6. Run `gcloud functions deploy [emailVerification | emailSignup] --trigger-http --runtime nodejs10 --region [YOUR_REGION] --entry-point main --update-env-vars [YOUR_ENVIRONMENT_VARIABLE=YOUR_VALUE...]`
+
+If specifying the environment variables on the command line isn't your cup of tea, you can log in to the Google Cloud Console, edit your function, and add environment variables there.
+
+Note: you need, at a minimum, to specify the `CLIENT_ID`, `EMAIL_ADDRESS`, and `PRIVATE_KEY` to authenticate with Gmail to send the verification email for `emailSignup`, and `SIGNUP_REDIRECT_URL` if you want the user to be redirected to the specified URL on a successful signup. For `emailVerification` you need to specify `VERIFY_REDIRECT_URL` if you want the user to be redirected to a URL after verifying their email address. Alternatively, modify the functions to return a 200 or an HTML success page if you don't want the user to be redirected.
