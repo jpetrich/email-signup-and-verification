@@ -3,5 +3,11 @@
   "version": "0.0.1",
   "dependencies": {
     "firebase-admin": "^9.5.0"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.7.1"
+  },
+  "scripts": {
+    "start": "npx functions-framework --target=main"
   }
 }

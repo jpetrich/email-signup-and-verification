@@ -46,7 +46,7 @@ exports.main = (req, res) => {
     transporter
       .sendMail(mailOptions)
       .then(() => {
-        res.status(200).send({ 'email': email, 'isVerified': isVerified});
+        return res.redirect(process.env.SIGNUP_REDIRECT_URL);
       })
       .catch(e => {
         res.status(500).send({

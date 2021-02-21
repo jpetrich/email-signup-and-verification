@@ -31,7 +31,7 @@ exports.main = (req, res) => {
       'isVerified': true
     }).then(result => {
       console.log(`Updated record at ${result.writeTime}`);
-      return res.status(200).send("<html><h1>Thank you!</h1>You have successfully verified your email address.</html>");
+      return res.redirect(process.env.VERIFY_REDIRECT_URL);
     });
   })
 
